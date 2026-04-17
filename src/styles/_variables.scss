@@ -1,0 +1,13 @@
+$bg: #0f1115;
+$surface: #1a1d24;
+$border: #2a2f3a;
+$primary: #ff8a00;
+$secondary: #1fb6a6;
+$text: #e6eaf0;
+$muted: #9aa4b2;
+$row-hover: #1f2430;
+
+@mixin focus-ring {
+  outline: 2px solid rgba($primary, 0.45);
+  outline-offset: 2px;
+}

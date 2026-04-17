@@ -1,0 +1,72 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Website redesign",
+      "description": "Marketing site refresh",
+      "status": "active",
+      "createdAt": "2025-01-10T10:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "Mobile app",
+      "description": "Customer mobile experience",
+      "status": "active",
+      "createdAt": "2025-02-01T12:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "Internal tools",
+      "description": "Admin dashboards",
+      "status": "completed",
+      "createdAt": "2024-11-05T09:30:00.000Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "projectId": 1,
+      "title": "Write homepage copy",
+      "assignee": "Alice",
+      "status": "in_progress",
+      "order": 0,
+      "dueDate": "2026-05-01"
+    },
+    {
+      "id": 2,
+      "projectId": 1,
+      "title": "Design hero section",
+      "assignee": "Bob",
+      "status": "todo",
+      "order": 0,
+      "dueDate": "2026-04-20"
+    },
+    {
+      "id": 3,
+      "projectId": 1,
+      "title": "Accessibility audit",
+      "assignee": "Carol",
+      "status": "done",
+      "order": 0,
+      "dueDate": "2026-03-15"
+    },
+    {
+      "id": 4,
+      "projectId": 2,
+      "title": "Push notifications",
+      "assignee": "Dan",
+      "status": "todo",
+      "order": 0,
+      "dueDate": "2026-06-01"
+    },
+    {
+      "id": 5,
+      "projectId": 2,
+      "title": "Offline mode",
+      "assignee": "Alice",
+      "status": "in_progress",
+      "order": 0,
+      "dueDate": "2026-05-10"
+    }
+  ]
+}
