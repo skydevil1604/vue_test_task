@@ -1,3 +1,6 @@
+# Pages хостить лише статику з dist/ — json-server у проді на GitHub недоступний.
+# Тут json-server піднімається в ранері лише для перевірок і smoke-тестів API.
+
 name: Deploy GitHub Pages
 
 on:
@@ -19,6 +22,34 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Start json-server
+        run: |
+          node server.cjs &
+          echo "SERVER_PID=$!" >> "$GITHUB_ENV"
+          for i in $(seq 1 30); do
+            if curl -sf http://127.0.0.1:3000/projects >/dev/null; then
+              echo "json-server is ready"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "Timeout waiting for json-server"
+          exit 1
+
+      - name: Quality checks
+        run: npm run check
+
+      - name: Smoke test REST API
+        run: |
+          curl -sf http://127.0.0.1:3000/projects | head -c 300
+          echo
+          curl -sf http://127.0.0.1:3000/tasks | head -c 300
+          echo
+
+      - name: Stop json-server
+        if: always()
+        run: kill "$SERVER_PID" 2>/dev/null || true
 
       - name: Build (in-browser API mock for static hosting)
         run: npm run build
