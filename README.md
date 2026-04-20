@@ -134,8 +134,10 @@ git push -u origin main
 
 ### Увімкнути GitHub Pages
 
-1. **Settings → Pages → Build and deployment → Source:** гілка **`gh-pages`**, папка **`/` (root)**.
-2. Через хвилину сайт буде доступний за адресою:  
+1. **Settings → Pages → Build and deployment → Source:** гілка **`gh-pages`**, папка **`/` (root)**.  
+   **Не вибирайте гілку `main`:** у корені репозиторію лежить девелоперський `index.html` з `/src/main.ts`. GitHub тоді віддає його як сайт — у консолі буде `GET …/src/main.ts 404`, сторінка порожня.
+2. Якщо в списку джерел є варіант **GitHub Actions** — для цього проєкту використовуйте саме **гілку `gh-pages`** (workflow `peaceiris` пушить у неї зібраний `dist`), а не «Deploy from a branch» з **`main`**.
+3. Через хвилину сайт буде доступний за адресою:  
    `https://<USER>.github.io/<REPO>/`
 
 Якщо репозиторій не в корені акаунта, шлях залишається `/REPO/`, він уже підставляється в workflow через `github.event.repository.name`.
