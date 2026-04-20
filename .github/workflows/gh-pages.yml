@@ -57,6 +57,20 @@ jobs:
           VITE_MOCK_API: "true"
           VITE_BASE: /${{ github.event.repository.name }}/
 
+      - name: Verify dist is a production bundle (not dev index.html)
+        run: |
+          if grep -q 'src/main.ts' dist/index.html; then
+            echo "dist/index.html still references /src/main.ts — build is wrong."
+            exit 1
+          fi
+          if ! grep -q 'assets/index-' dist/index.html; then
+            echo "dist/index.html has no hashed assets/ bundle link."
+            exit 1
+          fi
+
+      - name: SPA fallback (refresh on deep links)
+        run: cp dist/index.html dist/404.html
+
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
         with:
