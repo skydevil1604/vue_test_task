@@ -120,10 +120,7 @@ function back() {
       >
     </section>
 
-    <TasksTable
-      v-else-if="viewMode === 'table'"
-      :project-id="projectId"
-    />
+    <TasksTable v-else-if="viewMode === 'table'" :project-id="projectId" />
     <KanbanBoard v-else :project-id="projectId" />
 
     <TaskCreateModal

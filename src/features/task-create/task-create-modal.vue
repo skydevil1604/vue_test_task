@@ -36,12 +36,7 @@ const dueError = ref("");
 
 const statusOptions = TASK_STATUSES.map((s) => ({
   value: s,
-  label:
-    s === "todo"
-      ? "To do"
-      : s === "in_progress"
-        ? "In progress"
-        : "Done",
+  label: s === "todo" ? "To do" : s === "in_progress" ? "In progress" : "Done",
 }));
 
 const assigneeOptions = ASSIGNEES.map((a) => ({ value: a, label: a }));
@@ -84,9 +79,7 @@ async function submit() {
     (x) => x.projectId === props.projectId && x.status === status.value,
   );
   const order =
-    siblings.length === 0
-      ? 0
-      : Math.max(...siblings.map((x) => x.order)) + 1;
+    siblings.length === 0 ? 0 : Math.max(...siblings.map((x) => x.order)) + 1;
 
   try {
     await tasks.createTask({

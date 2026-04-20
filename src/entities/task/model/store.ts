@@ -108,7 +108,6 @@ export const useTasksStore = defineStore("tasks", {
         targetList = lists[toStatus];
       } else {
         targetList = lists[toStatus].filter((id) => id !== payload.taskId);
-        lists[fromStatus] = lists[fromStatus];
       }
 
       const next = [...targetList];
@@ -194,9 +193,7 @@ export const useTasksStore = defineStore("tasks", {
       return updates;
     },
 
-    async runOrderMutation(
-      mutate: () => TaskOrderUpdate[],
-    ): Promise<void> {
+    async runOrderMutation(mutate: () => TaskOrderUpdate[]): Promise<void> {
       const before = cloneTasks(this.tasks);
       const updates = mutate();
       if (updates.length === 0) return;

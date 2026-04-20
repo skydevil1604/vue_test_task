@@ -130,8 +130,7 @@ const persistTable = debounce(() => {
 watch([sorting, columnSizing], persistTable, { deep: true });
 
 function statusAllowed(t: Task, f: TaskFieldFilters): boolean {
-  const anyChecked =
-    f.statusTodo || f.statusInProgress || f.statusDone;
+  const anyChecked = f.statusTodo || f.statusInProgress || f.statusDone;
   if (!anyChecked) return false;
   if (t.status === "todo") return f.statusTodo;
   if (t.status === "in_progress") return f.statusInProgress;
@@ -174,8 +173,7 @@ const hasAdvancedFilter = computed(() => {
 });
 
 const hasFilter = computed(
-  () =>
-    searchDebounced.value.trim().length > 0 || hasAdvancedFilter.value,
+  () => searchDebounced.value.trim().length > 0 || hasAdvancedFilter.value,
 );
 
 const hasSort = computed(() => sorting.value.length > 0);
@@ -393,14 +391,12 @@ function toggleFilterPanel() {
                 do</label
               >
               <label class="chk"
-                ><input
-                  v-model="filters.statusInProgress"
-                  type="checkbox"
-                />
-                In progress</label
+                ><input v-model="filters.statusInProgress" type="checkbox" /> In
+                progress</label
               >
               <label class="chk"
-                ><input v-model="filters.statusDone" type="checkbox" /> Done</label
+                ><input v-model="filters.statusDone" type="checkbox" />
+                Done</label
               >
             </fieldset>
             <label class="fp-field">
@@ -463,7 +459,10 @@ function toggleFilterPanel() {
                   >▼</span
                 >
               </button>
-              <span v-else-if="header.column.id === 'drag'" class="th__drag-h" />
+              <span
+                v-else-if="header.column.id === 'drag'"
+                class="th__drag-h"
+              />
               <div
                 v-if="header.column.getCanResize()"
                 class="th__resizer"
@@ -501,11 +500,7 @@ function toggleFilterPanel() {
 
         <tbody v-else>
           <tr v-for="row in table.getRowModel().rows" :key="row.id" class="tr">
-            <td
-              v-for="cell in row.getVisibleCells()"
-              :key="cell.id"
-              class="td"
-            >
+            <td v-for="cell in row.getVisibleCells()" :key="cell.id" class="td">
               <FlexRender
                 :render="cell.column.columnDef.cell"
                 :props="cell.getContext()"

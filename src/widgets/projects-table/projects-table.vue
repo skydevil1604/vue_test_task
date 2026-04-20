@@ -27,10 +27,10 @@ const router = useRouter();
 
 const STORAGE_KEY = "ui:projectsTable:v1";
 
-const saved = loadJson<{ sorting: SortingState; columnSizing: ColumnSizingState }>(
-  STORAGE_KEY,
-  { sorting: [], columnSizing: {} },
-);
+const saved = loadJson<{
+  sorting: SortingState;
+  columnSizing: ColumnSizingState;
+}>(STORAGE_KEY, { sorting: [], columnSizing: {} });
 
 const sorting = ref<SortingState>(saved.sorting);
 const columnSizing = ref<ColumnSizingState>(saved.columnSizing);
@@ -71,8 +71,7 @@ const columns = [
     size: 120,
     minSize: 96,
     maxSize: 240,
-    cell: (info) =>
-      info.getValue() === "active" ? "Active" : "Completed",
+    cell: (info) => (info.getValue() === "active" ? "Active" : "Completed"),
   }),
   columnHelper.accessor("createdAt", {
     header: "Created",
@@ -161,7 +160,9 @@ function goRow(row: ProjectRow) {
               </button>
               <div
                 class="th__resizer"
-                :class="{ 'th__resizer--active': header.column.getIsResizing() }"
+                :class="{
+                  'th__resizer--active': header.column.getIsResizing(),
+                }"
                 @dblclick.stop
                 @mousedown="header.getResizeHandler()?.($event)"
                 @touchstart="header.getResizeHandler()?.($event)"
@@ -178,11 +179,7 @@ function goRow(row: ProjectRow) {
             @click="goRow(row.original)"
             @keydown.enter="goRow(row.original)"
           >
-            <td
-              v-for="cell in row.getVisibleCells()"
-              :key="cell.id"
-              class="td"
-            >
+            <td v-for="cell in row.getVisibleCells()" :key="cell.id" class="td">
               <FlexRender
                 :render="cell.column.columnDef.cell"
                 :props="cell.getContext()"

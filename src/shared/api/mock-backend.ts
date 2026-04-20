@@ -28,10 +28,6 @@ function writeLs(db: Db): void {
   }
 }
 
-export function isMockApiEnabled(): boolean {
-  return import.meta.env.VITE_MOCK_API === "true";
-}
-
 function getDb(): Db {
   if (memory) return memory;
   const fromLs = readLs();

@@ -9,7 +9,13 @@
     "build": "vue-tsc -b && vite build",
     "build:mock": "VITE_MOCK_API=true vite build",
     "preview": "vite preview",
-    "server": "node server.cjs"
+    "server": "node server.cjs",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "vue-tsc -b --noEmit",
+    "check": "npm run typecheck && npm run lint && npm run format:check"
   },
   "dependencies": {
     "@tanstack/vue-table": "^8.21.3",
@@ -21,12 +27,20 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^25.6.0",
     "@vitejs/plugin-vue": "^5.2.1",
+    "eslint": "^10.2.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-vue": "^10.8.0",
+    "globals": "^17.5.0",
     "json-server": "^0.17.4",
+    "prettier": "^3.8.3",
     "sass": "^1.83.4",
     "typescript": "~5.7.2",
+    "typescript-eslint": "^8.58.2",
     "vite": "^6.0.7",
+    "vue-eslint-parser": "^10.4.0",
     "vue-tsc": "^2.2.0"
   }
 }

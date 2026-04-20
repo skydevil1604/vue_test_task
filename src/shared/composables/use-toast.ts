@@ -1,6 +1,10 @@
 import { ref } from "vue";
 
-export type ToastItem = { id: number; message: string; kind: "success" | "error" };
+export type ToastItem = {
+  id: number;
+  message: string;
+  kind: "success" | "error";
+};
 
 const items = ref<ToastItem[]>([]);
 let seq = 0;
